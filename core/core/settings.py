@@ -39,11 +39,12 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-THIRD_PARTY_APPS = ["rest_framework"]
+THIRD_PARTY_APPS = ["rest_framework", "address", "phonenumber_field", "autoslug"]
 
 PROJECT_APPS = [
     "apps.authentication",
     "apps.organization",
+    "apps.third_party",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
@@ -60,6 +61,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "core.urls"
 APPEND_SLASH = False
+AUTH_USER_MODEL = "authentication.User"
 
 TEMPLATES = [
     {
