@@ -7,7 +7,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 from common.models import BaseModel
 
-from .choices import OrganizationStatus
+from .choices import OrganizationStatus, MemberRole
 from .utils import get_organization_media_path_prefix, get_organization_slug
 
 User = get_user_model()
@@ -70,6 +70,9 @@ class OrganizationMember(BaseModel):
     organization = models.ForeignKey(
         Organization, on_delete=models.CASCADE, related_name="members"
     )
+    role = models.CharField(
+        max_length=25, choices=MemberRole.choices, default=MemberRole.CUSTOMER
+    )
 
     def __str__(self):
-        return f"{self.user.phone} → {self.organization.name}"
+        return f"{self.user.phone} → {self.organization.name} -{self.role}"
